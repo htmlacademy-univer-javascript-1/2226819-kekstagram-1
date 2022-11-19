@@ -1,7 +1,5 @@
 import {getRandomArrayElement} from "./util";
 
-// Количество постов
-const SIMILAR_POST_COUNT = 25;
 
 // Пул комментариев
 const COMMENT_MESSAGES = [
@@ -83,10 +81,10 @@ const createComment = (index) => {
 }
 
 // Функция, которая создаёт пул постов
-const createPosts = () => {
+const createPosts = (count) => {
   // Массив с временными данными
   const similarPosts = [];
-  for (let i = 1; i <= SIMILAR_POST_COUNT; i++) {
+  for (let i = 1; i <= count; i++) {
     similarPosts[i] = createPost(i);
   }
 
