@@ -1,4 +1,5 @@
 import {createPosts} from './data.js';
+import {addThumbnailClickHandler} from "./big_picture";
 
 
 // DOM-элемент - список миниатюр
@@ -7,10 +8,10 @@ const thumbnailsList = document.querySelector('.pictures');
 const postTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
+// Набор рандомных данных о 25 постах, которые необходимо добавить на страницу
+const postsData = createPosts(10);
 // DOM-элемент - фрагмент документа, который не виден на странице
 const postsFragment = document.createDocumentFragment();
-// Набор рандомных данных о 25 постах, которые необходимо добавить на страницу
-const postsData = createPosts(25);
 
 // Создание DOM-элементов, соответствующих фотографиям
 postsData.forEach(({id, url, description, likes, comments}) => {
@@ -28,3 +29,8 @@ postsData.forEach(({id, url, description, likes, comments}) => {
 
 // Добавление полученных постов в список миниатюр из фрагмента документа
 thumbnailsList.appendChild(postsFragment);
+
+// Добавление обработчиков событий на миниатюры (с использованием замыкания)
+for (let i = 0; i < thumbnailsList.length; i++) {
+  addThumbnailClickHandler(thumbnailsList[i], postsData[i]);
+}
