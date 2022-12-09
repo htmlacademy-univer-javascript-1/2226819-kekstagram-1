@@ -24,7 +24,6 @@ const commentTemplateHTML = '' +
   '</template>';
 // Добавление шаблона в конец блока body
 document.body.insertAdjacentHTML('beforeend', commentTemplateHTML);
-
 // Шаблон для добавления комментария под полноразмерный пост
 const commentTemplate = document.querySelector('#comment')
   .content
