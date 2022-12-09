@@ -1,4 +1,4 @@
-import {getRandomArrayElement} from "./util";
+import {getRandomIntInclusive, getRandomArrayElement} from './util.js';
 
 
 // Пул комментариев
@@ -46,7 +46,7 @@ const POSTS_DESCRIPTIONS = [
 const createPost = (index) => {
   // Массив с комментариями
   let comments = [];
-  for (let i = 0; i <= getRandomIntInclusive(1, 5); i++) {
+  for (let i = 0; i <= getRandomIntInclusive(1, 30); i++) {
     comments[i] = createComment(i);
   }
 
