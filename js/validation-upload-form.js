@@ -55,6 +55,7 @@ pristine.addValidator(
   "Некорректное описание!"
 );
 
+
 // Проверка формы на валидность при сабмите
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
