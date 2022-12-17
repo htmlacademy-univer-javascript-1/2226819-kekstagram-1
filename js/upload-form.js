@@ -1,9 +1,14 @@
 // Форма редактирования поста
+import {sendData} from "./api.js";
+import {showAlert} from "./util.js";
+
 const form = document.querySelector(".img-upload__form");
 // Поле ввода хэш-тегов
 const hashtagInput = document.querySelector(".text__hashtags");
 // Поле ввода описания поста
 const descriptionInput = document.querySelector(".text__description");
+// Кнопка отправки формы
+const submitButton = document.querySelector(".img-upload__submit");
 
 // Объект конфига pristine
 const defaultConfig = {
@@ -56,14 +61,44 @@ pristine.addValidator(
 );
 
 
-// Проверка формы на валидность при сабмите
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValid = pristine.validate();
+// Блокировка кнопки загрузки формы
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+};
 
-  if (isValid) {
-    console.log('Форма валидна');
-  } else {
-    console.log('Форма невалидна');
-  }
-});
+// Разблокировка кнопки загрузки формы
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
+
+// Проверка формы на валидность при сабмите
+const setUserFormSubmit = function (onSuccess, onFail) {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+        },
+        () => {
+          onFail();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    } else {
+      console.log('Форма невалидна');
+    }
+  });
+};
+
+
+export {setUserFormSubmit};
