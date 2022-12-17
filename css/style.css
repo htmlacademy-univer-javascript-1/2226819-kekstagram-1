@@ -366,6 +366,21 @@ main {
   outline: auto 5px highlight;
 }
 
+.img-upload__scale_25 {
+  transform: scale(0.25);
+}
+
+.img-upload__scale_50 {
+  transform: scale(0.5);
+}
+
+.img-upload__scale_75 {
+  transform: scale(0.75);
+}
+
+.img-upload__scale_100 {
+  transform: scale(1);
+}
 
 /* Окно для редактирования изображения
    ========================================================================== */

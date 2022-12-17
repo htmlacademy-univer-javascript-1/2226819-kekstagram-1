@@ -17,9 +17,19 @@ const getRandomArrayElement = (elements) => {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
 };
 
+// Проверка на нажатие Escape
 const isEscapeKey = (evt) => {
   return evt.key === 'Escape';
 };
 
+// Функция поиска выбранной радио-кнопки
+let getCheckedRadioButton = function (radios) {
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      return  radios[i].value.toString();
+    }
+  }
+};
 
-export {getRandomIntInclusive, getRandomArrayElement, isEscapeKey};
+
+export {getRandomIntInclusive, getRandomArrayElement, isEscapeKey, getCheckedRadioButton};
